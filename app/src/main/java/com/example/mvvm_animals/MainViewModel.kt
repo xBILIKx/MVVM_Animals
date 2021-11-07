@@ -9,6 +9,7 @@ import com.example.animals.Dogs.DogResponce
 import com.example.animals.Dogs.IDogApi
 import com.example.animals.Ducks.DuckResponce
 import com.example.animals.Ducks.IDuckApi
+import com.example.mvvm_animals.models.Consts
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

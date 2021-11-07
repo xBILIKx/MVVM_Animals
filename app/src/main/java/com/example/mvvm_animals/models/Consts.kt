@@ -1,4 +1,4 @@
-package com.example.mvvm_animals
+package com.example.mvvm_animals.models
 
 object Consts{
     const val DUCK_URL = "https://random-d.uk/api/v2/"

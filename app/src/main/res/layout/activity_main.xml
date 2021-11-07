@@ -4,51 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".screens.MainActivity">
 
-    <ImageView
-        android:id="@+id/imgView"
+    <fragment
+        android:id="@+id/containerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="100dp"
+        app:defaultNavHost="true"
+        app:navGraph = "@navigation/nav_host"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127"
-        app:srcCompat="@android:drawable/screen_background_dark" />
-
-    <Button
-        android:id="@+id/catButton"
-        android:layout_width="116dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="16dp"
-        android:text="random\ncat"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/duckButton"
-        android:layout_width="116dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="16dp"
-        android:text="Random\nduck"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/dogButton"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toEndOf="@+id/catButton" />
-
-    <Button
-        android:id="@+id/dogButton"
-        android:layout_width="116dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="16dp"
-        android:text="Random\ndog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:ignore="FragmentTagUsage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

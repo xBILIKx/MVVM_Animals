@@ -1,5 +1,6 @@
 package com.example.mvvm_animals
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.animals.Cats.CatResponce
@@ -15,10 +16,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainViewModel : ViewModel() {
-    private val liveDataMutable = MutableLiveData<String>()
-    private val errorLiveDataMutable = MutableLiveData<String>()
-    val liveData = liveDataMutable
-    val erorLiveData = errorLiveDataMutable
+    private val _imagesLiveData = MutableLiveData<String>()
+    private val _errorMessageLiveData = MutableLiveData<String>()
+    val imagesLiveData: LiveData<String>
+        get() = _imagesLiveData
+    val errorMessageLiveData: LiveData<String>
+        get() = _errorMessageLiveData
 
     fun getCat(){
         val retrofitBuilder = retrofitRequest<ICatApi>(Consts.CAT_URL)
@@ -28,12 +31,12 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<CatResponce?>,
                                     response: Response<CatResponce?>
             ) {
-                val responceBody = response.body()!!
-                liveDataMutable.value = responceBody.imgUrl
+                val responseBody = response.body()!!
+                _imagesLiveData.value = responseBody.imgUrl
             }
 
             override fun onFailure(call: Call<CatResponce?>, t: Throwable) {
-                errorLiveDataMutable.value = Consts.ERROR_MSG
+                _errorMessageLiveData.value = Consts.ERROR_MSG
             }
         })
     }
@@ -46,12 +49,12 @@ class MainViewModel : ViewModel() {
             override fun onResponse( call: Call<DogResponce?>,
                                      response: Response<DogResponce?>
             ) {
-                val responceBody = response.body()!!
-                liveDataMutable.value = responceBody.imgUrl
+                val responseBody = response.body()!!
+                _imagesLiveData.value = responseBody.imgUrl
             }
 
             override fun onFailure(call: Call<DogResponce?>, t: Throwable) {
-                errorLiveDataMutable.value = Consts.ERROR_MSG
+                _errorMessageLiveData.value = Consts.ERROR_MSG
             }
         })
     }
@@ -64,12 +67,12 @@ class MainViewModel : ViewModel() {
             override fun onResponse( call: Call<DuckResponce?>,
                                      response: Response<DuckResponce?>
             ) {
-                val responceBody = response.body()!!
-                liveDataMutable.value = responceBody.imgUrl
+                val responseBody = response.body()!!
+                _imagesLiveData.value = responseBody.imgUrl
             }
 
             override fun onFailure(call: Call<DuckResponce?>, t: Throwable) {
-                errorLiveDataMutable.value = Consts.ERROR_MSG
+                _errorMessageLiveData.value = Consts.ERROR_MSG
             }
         })
     }

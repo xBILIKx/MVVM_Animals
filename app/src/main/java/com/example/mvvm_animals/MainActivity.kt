@@ -1,12 +1,11 @@
 package com.example.mvvm_animals
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,13 +17,14 @@ class MainActivity : AppCompatActivity() {
         val dogButton: Button = findViewById(R.id.dogButton)
         val catButton: Button = findViewById(R.id.catButton)
 
-        val vm = ViewModelProvider(this).get(MainViewModel::class.java)
+        val vm = ViewModelProvider(this)[MainViewModel::class.java]
 
-        vm.liveData.observe(this, {
-            Picasso.get().load(it).into(imgView);
+        vm.imagesLiveData.observe(this, {
+//            Picasso.get().load(it).into(imgView);
+            imgView.loadGifOrImage(this, it)
         })
 
-        vm.erorLiveData.observe(this, {
+        vm.errorMessageLiveData.observe(this, {
             Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
         })
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         dogButton.setOnClickListener {
-            vm.getDuck()
+            vm.getDog()
         }
 
         catButton.setOnClickListener{
